@@ -1,5 +1,7 @@
 {
   "name": "ionic-tasklist",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
