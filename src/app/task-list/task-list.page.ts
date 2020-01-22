@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActionSheetController } from '@ionic/angular';
+import { ActionSheetController, AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-task-list',
@@ -13,6 +13,7 @@ export class TaskListPage implements OnInit {
   ];
   constructor(
     public actionSheetController: ActionSheetController,
+    public alertController: AlertController,
   ) { }
 
   ngOnInit() {
@@ -42,6 +43,7 @@ export class TaskListPage implements OnInit {
           icon: 'create',
           handler: () => {
             console.log('Archive clicked');
+            this._renameTask(index);
           }
         }, {
           text: '閉じる',
@@ -53,5 +55,32 @@ export class TaskListPage implements OnInit {
       ]
     });
     actionSheet.present();
+  }
+
+  //変更時のアラート処理
+  async _renameTask(index: number) {
+    const prompt = await this.alertController.create({
+      header: '変更後のタスク',
+      inputs: [
+        {
+          name: 'task',
+          placeholder: 'タスク',
+          value: this.tasks[index].name
+        },
+      ],
+      buttons: [
+        {
+          text: '閉じる'
+        },
+        {
+          text: '保存',
+          handler: data => {
+            this.tasks[index] = { name: data.task };
+            localStorage.tasks = JSON.stringify(this.tasks);
+          }
+        }
+      ]
+    });
+    prompt.present();
   }
 }
