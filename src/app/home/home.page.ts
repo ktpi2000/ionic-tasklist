@@ -11,7 +11,7 @@ export class HomePage {
     { name: 'タスク1' },
     { name: 'タスク2' },
   ];
-  task; string;
+  task: string;
   constructor() { }
 
 }
