@@ -34,6 +34,8 @@ export class TaskListPage implements OnInit {
           icon: 'trash',
           handler: () => {
             console.log('Destructive clicked');
+            this.tasks.splice(index, 1);
+            localStorage.tasks = JSON.stringify(this.tasks);
           }
         }, {
           text: '変更',
