@@ -16,7 +16,7 @@ const routes: Routes = [
     loadChildren: () => import('./list/list.module').then(m => m.ListPageModule)
   },
   {
-    path: 'task',
+    path: 'tasks',
     loadChildren: () => import('./task-list/task-list.module').then(m => m.TaskListPageModule)
   }
 ];
