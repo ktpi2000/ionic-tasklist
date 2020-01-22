@@ -14,4 +14,12 @@ export class HomePage {
   task: string;
   constructor() { }
 
+  addTask() {
+    this.tasks.push({
+      name: this.task
+    });
+    //入力値を空にする
+    this.task = '';
+  }
+
 }
